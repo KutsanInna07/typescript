@@ -1,21 +1,26 @@
-import { IStreamLogger } from '../../core/handlers/stream-logger.interface';
+import { IStreamLogger } from "../../core/handlers/stream-logger.interface";
 
 export class ConsoleLogger implements IStreamLogger {
-	private static logger: ConsoleLogger;
-	public static getInstance() {
-		if (!ConsoleLogger.logger) {
-			ConsoleLogger.logger = new ConsoleLogger();
-		}
-		return ConsoleLogger.logger;
-	}
+  private static instance: ConsoleLogger;
 
-	log(...args: any[]): void {
-		console.log(...args);
-	}
-	error(...args: any[]): void {
-		console.log(...args);
-	}
-	end(): void {
-		console.log('Готово');
-	}
+  private constructor() {}
+
+  static getInstance(): ConsoleLogger {
+    if (!ConsoleLogger.instance) {
+      ConsoleLogger.instance = new ConsoleLogger();
+    }
+    return ConsoleLogger.instance;
+  }
+
+  log(...args: any[]): void {
+    console.log(...args);
+  }
+
+  error(...args: any[]): void {
+    console.error(...args);
+  }
+
+  end(): void {
+    console.log("Готово");
+  }
 }
