@@ -1,10 +1,12 @@
-import { DirExecuter } from './commands/dir/dir.executor';
-import { ConsoleLogger } from './out/console-logger/console-logger';
+import { DirExecuter } from "./commands/dir/dir.executor";
+import { ConsoleLogger } from "./out/console-logger/console-logger";
 
-export class App {
-	async run() {
-		new DirExecuter(ConsoleLogger.getInstance()).execute();
-	}
+class App {
+  async run() {
+    const logger = ConsoleLogger.getInstance();
+    const dirExecuter = new DirExecuter(logger);
+    await dirExecuter.execute();
+  }
 }
 
 const app = new App();
